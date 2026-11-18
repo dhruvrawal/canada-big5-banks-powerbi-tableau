@@ -1,0 +1,27 @@
+table dim_bank
+
+	column bank_id
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: bank_id
+
+	column bank_name
+		dataType: string
+		summarizeBy: none
+		sourceColumn: bank_name
+
+	column head_office
+		dataType: string
+		summarizeBy: none
+		sourceColumn: head_office
+
+	partition dim_bank = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents("D:\Work\projects\canada-big5-banks-powerbi-tableau\bi\dim_bank.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Typed = Table.TransformColumnTypes(Headers, {{"bank_id", type text}, {"bank_name", type text}, {"head_office", type text}}, "en-US")
+			in
+				Typed

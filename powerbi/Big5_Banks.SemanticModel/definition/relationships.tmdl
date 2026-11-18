@@ -1,0 +1,23 @@
+relationship r0
+	fromColumn: dim_customer.primary_bank
+	toColumn: dim_bank.bank_id
+
+relationship r1
+	fromColumn: dim_account.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship r2
+	fromColumn: fact_loans.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship r3
+	fromColumn: fact_transactions.customer_id
+	toColumn: dim_customer.customer_id
+
+relationship r4
+	fromColumn: fact_transactions.date
+	toColumn: dim_date.date
+
+relationship r5
+	fromColumn: fact_transactions.branch_id
+	toColumn: dim_branch.branch_id

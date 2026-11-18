@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "slBank",
+  "position": {
+    "x": 1130,
+    "y": 20,
+    "z": 0,
+    "height": 130,
+    "width": 130,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "slicer",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_bank"
+                    }
+                  },
+                  "Property": "bank_id"
+                }
+              },
+              "queryRef": "dim_bank.bank_id",
+              "nativeQueryRef": "bank_id"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

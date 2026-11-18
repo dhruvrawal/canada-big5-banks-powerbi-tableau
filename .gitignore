@@ -1,0 +1,7 @@
+data/*.csv
+.pyspark-env/
+.venv/
+__pycache__/
+*.pyc
+spark-warehouse/
+metastore_db/

@@ -1,0 +1,6 @@
+bank_id,customers,churn_pct,deposits_cad_m,default_rate_pct,loan_book_cad_m,fraud_rate_pct,spend_cad_m
+BMO,2919,9.01,32.1,3.02,224.5,0.395,6.97
+BNS,3928,8.81,42.6,3.47,279.8,0.373,9.31
+TD,5235,8.37,55.8,3.15,371.2,0.4,12.66
+CIBC,2622,9.0,27.6,2.24,200.9,0.412,6.31
+RBC,5296,9.59,56.5,3.95,382.8,0.399,12.56

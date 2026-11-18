@@ -1,0 +1,66 @@
+table _Measures
+
+	measure 'Total Spend' = SUM(fact_transactions[amount_cad])
+		formatString: $#,0
+
+	measure 'Transactions' = COUNTROWS(fact_transactions)
+		formatString: #,0
+
+	measure 'Fraud Txns' = SUM(fact_transactions[is_fraud])
+		formatString: #,0
+
+	measure 'Fraud Rate %' = DIVIDE([Fraud Txns], [Transactions]) * 100
+		formatString: 0.00
+
+	measure 'Fraud Loss' = CALCULATE([Total Spend], fact_transactions[is_fraud] = 1)
+		formatString: $#,0
+
+	measure 'Loan Book' = DIVIDE(SUM(fact_loans[principal_cad]), 1000000)
+		formatString: $#,0"M"
+
+	measure 'Loans' = COUNTROWS(fact_loans)
+		formatString: #,0
+
+	measure 'Default Rate %' = DIVIDE(SUM(fact_loans[defaulted]), [Loans]) * 100
+		formatString: 0.00
+
+	measure 'Customers' = COUNTROWS(dim_customer)
+		formatString: #,0
+
+	measure 'Churn Rate %' = DIVIDE(SUM(dim_customer[churned]), [Customers]) * 100
+		formatString: 0.00
+
+	measure 'Deposits' = DIVIDE(CALCULATE(SUM(dim_account[balance]), dim_account[account_type] <> "Credit Card"), 1000000)
+		formatString: $#,0.0"M"
+
+	measure 'Spend LY' = CALCULATE([Total Spend], SAMEPERIODLASTYEAR(dim_date[date]))
+		formatString: $#,0
+
+	measure 'Spend YoY %' = DIVIDE([Total Spend] - [Spend LY], [Spend LY]) * 100
+		formatString: 0.0
+
+	measure 'Spend MoM %' = VAR prev = CALCULATE([Total Spend], DATEADD(dim_date[date], -1, MONTH)) RETURN DIVIDE([Total Spend] - prev, prev) * 100
+		formatString: 0.0
+
+	measure 'Market Share %' = DIVIDE([Customers], CALCULATE([Customers], ALL(dim_bank))) * 100
+		formatString: 0.0
+
+	measure 'Avg Interest Rate %' = AVERAGE(fact_loans[interest_rate_pct])
+		formatString: 0.00
+
+	measure 'Avg Txn Value' = DIVIDE([Total Spend], [Transactions])
+		formatString: $#,0.00
+
+	column Dummy
+		isHidden
+		dataType: int64
+		summarizeBy: none
+		sourceColumn: Dummy
+
+	partition _Measures = m
+		mode: import
+		source =
+			let
+				Source = #table(type table [Dummy = Int64.Type], {})
+			in
+				Source

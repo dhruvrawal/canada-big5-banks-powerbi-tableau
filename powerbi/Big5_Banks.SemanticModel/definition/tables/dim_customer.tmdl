@@ -1,0 +1,74 @@
+table dim_customer
+
+	column customer_id
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: customer_id
+
+	column age
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: age
+
+	column province
+		dataType: string
+		summarizeBy: none
+		sourceColumn: province
+
+	column segment
+		dataType: string
+		summarizeBy: none
+		sourceColumn: segment
+
+	column annual_income
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: annual_income
+
+	column credit_score
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: credit_score
+
+	column primary_bank
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: primary_bank
+
+	column join_date
+		dataType: dateTime
+		formatString: Long Date
+		summarizeBy: none
+		sourceColumn: join_date
+
+	column churned
+		dataType: int64
+		isHidden
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: churned
+
+	column score_band
+		dataType: string
+		summarizeBy: none
+		sourceColumn: score_band
+
+	column age_group
+		dataType: string
+		summarizeBy: none
+		sourceColumn: age_group
+
+	partition dim_customer = m
+		mode: import
+		source =
+			let
+				Source = Csv.Document(File.Contents("D:\Work\projects\canada-big5-banks-powerbi-tableau\bi\dim_customer.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				Typed = Table.TransformColumnTypes(Headers, {{"customer_id", type text}, {"age", Int64.Type}, {"province", type text}, {"segment", type text}, {"annual_income", Int64.Type}, {"credit_score", Int64.Type}, {"primary_bank", type text}, {"join_date", type date}, {"churned", Int64.Type}, {"score_band", type text}, {"age_group", type text}}, "en-US")
+			in
+				Typed

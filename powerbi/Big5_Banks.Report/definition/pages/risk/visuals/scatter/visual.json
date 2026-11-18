@@ -1,0 +1,96 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "scatter",
+  "position": {
+    "x": 860,
+    "y": 165,
+    "z": 0,
+    "height": 270,
+    "width": 400,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_bank"
+                    }
+                  },
+                  "Property": "bank_id"
+                }
+              },
+              "queryRef": "dim_bank.bank_id",
+              "nativeQueryRef": "bank_id"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Avg Interest Rate %"
+                }
+              },
+              "queryRef": "_Measures.Avg Interest Rate %",
+              "nativeQueryRef": "Avg Interest Rate %"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Default Rate %"
+                }
+              },
+              "queryRef": "_Measures.Default Rate %",
+              "nativeQueryRef": "Default Rate %"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Interest rate vs default rate by bank'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

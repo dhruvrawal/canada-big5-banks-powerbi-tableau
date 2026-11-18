@@ -1,0 +1,78 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "name": "depBank",
+  "position": {
+    "x": 660,
+    "y": 450,
+    "z": 0,
+    "height": 260,
+    "width": 600,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_bank"
+                    }
+                  },
+                  "Property": "bank_id"
+                }
+              },
+              "queryRef": "dim_bank.bank_id",
+              "nativeQueryRef": "bank_id"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Deposits"
+                }
+              },
+              "queryRef": "_Measures.Deposits",
+              "nativeQueryRef": "Deposits"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true,
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Deposits by bank (CAD M)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
