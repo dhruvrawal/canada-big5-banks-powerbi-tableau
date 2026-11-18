@@ -17,6 +17,11 @@ bi/*.csv                  → powerbi/Big5_Banks.pbip   and   Tableau Public wor
 ## Power BI (`powerbi/`)
 `Big5_Banks.pbip` is a text-based Power BI Project (works with Git): 7-table model, 6 relationships through `dim_customer`, 16 DAX measures (fraud, default and churn rates, YoY/MoM spend, market share, deposits, loan book) and four pages: Executive Overview, Fraud Monitor, Credit Risk, Customers and Churn. Open it in Power BI Desktop and update the CSV paths as described in [powerbi/POWERBI_BUILD_GUIDE.md](powerbi/POWERBI_BUILD_GUIDE.md).
 
+![Executive Overview](powerbi/screenshots/page1_executive_overview.jpg)
+![Fraud Monitor](powerbi/screenshots/page2_fraud_monitor.jpg)
+![Credit Risk](powerbi/screenshots/page3_credit_risk.jpg)
+![Customers and Churn](powerbi/screenshots/page4_customers_and_churn.jpg)
+
 ## Tableau (`tableau/`)
 Two dashboards published to Tableau Public as "Canada Big 5 Banks Analytics": **Fraud and Spend** and **Credit Risk** (province default map, credit-score bands, bank × loan-type heatmap). Build steps in [tableau/TABLEAU_BUILD_GUIDE.md](tableau/TABLEAU_BUILD_GUIDE.md).
 
