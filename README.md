@@ -8,7 +8,7 @@ Companion project (PySpark / Databricks / Delta Lake / MLlib analysis on the sam
 
 ## Pipeline
 ```
-scripts/generate_data.py  → data/*.csv   (synthetic, seed 42; not committed)
+scripts/generate_data.py  → data/*.csv   (synthetic, seed 42; generated locally, git-ignored)
 scripts/build_bi_marts.py → bi/*.csv     (PySpark: dedupe, enrich, star schema, aggregated marts)
 bi/*.csv                  → powerbi/Big5_Banks.pbip   and   Tableau Public workbook
 ```
@@ -43,4 +43,4 @@ python scripts/build_bi_marts.py     # writes bi/*.csv (needs Java 17+ for Spark
 
 ## Resume bullet
 **Canada Big 5 Banks BI | PySpark, Power BI, DAX, Tableau** (Personal Project, 2026)
-- Built a PySpark star-schema layer (7 dimension/fact tables, 3 aggregated marts) on 370K+ synthetic banking records, feeding a 4-page Power BI report (16 DAX measures) and 2 Tableau dashboards; reconciled dashboard figures against the PySpark results.
+- Built a PySpark star-schema layer (7 dimension/fact tables, 3 aggregated marts) on ~369K synthetic banking records, feeding a 4-page Power BI report (16 DAX measures) and 2 Tableau dashboards; reconciled dashboard figures against the PySpark results.
