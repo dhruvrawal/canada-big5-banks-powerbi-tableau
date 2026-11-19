@@ -40,7 +40,3 @@ pip install numpy pandas pyspark
 python scripts/generate_data.py      # writes data/*.csv
 python scripts/build_bi_marts.py     # writes bi/*.csv (needs Java 17+ for Spark)
 ```
-
-## Resume bullet
-**Canada Big 5 Banks BI | PySpark, Power BI, DAX, Tableau** (Personal Project, 2026)
-- Built a PySpark star-schema layer (7 dimension/fact tables, 3 aggregated marts) on ~369K synthetic banking records, feeding a 4-page Power BI report (16 DAX measures) and 2 Tableau dashboards; reconciled dashboard figures against the PySpark results.
